@@ -189,7 +189,7 @@
   \frametitle{今日のゴール}
   \begin{itemize}
     \item Kubernetes The Hard Way とは何かを理解する
-    \item 「自分で Kubernetes The Hard Way やってみたい！」と思わせる
+    \item 自分で Kubernetes The Hard Way やってみたい！(と思わせる)
   \end{itemize}
 \end{frame}
 
@@ -201,14 +201,14 @@
     \item 障害が起きたらデバッグできるようにしたい
     \item 自分好みの k8s を構築したい
     \item 最近の k8s は簡単すぎる
-    \item もっとキツイのが欲しい
+    \item もっとキツイのがイイ!
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{そんなあなたに}
   \begin{itemize}
-    \item Kubernetes the Hard Way
+    \item \href{https://github.com/kelseyhightower/kubernetes-the-hard-way}{``Kubernetes the Hard Way''}
   \end{itemize}
 \end{frame}
 
@@ -219,15 +219,35 @@
     \item Kubernetes 学習用のハンズオン資料
     \item Apache License Version 2.0
     \item 全14章で構成されるドキュメント
-    \item GCP上で動作することが想定されている
-    \item 6インスタンス(n1-standard-1)使用(Controller * 3 + Worker * 3)
   \end{itemize}
+\end{frame}
+
+\section{What is k8s the hard way?}
+\begin{frame}
+  \frametitle{``Kubernetes the Hard Way'' とは?}
+  \begin{enumerate}
+    \item Prerequisites
+    \item Installing the Client Tools
+    \item Provisioning Compute Resources
+    \item Provisioning a CA and Generating TLS Certificates
+    \item Generating Kubernetes Configuration Files for Authentication
+    \item Generating the Data Encryption Config and Key
+    \item Bootstrapping the etcd Cluster
+    \item Bootstrapping the Kubernetes Control Plane
+    \item Bootstrapping the Kubernetes Worker Nodes
+    \item Configuring kubectl for Remote Access
+    \item Provisioning Pod Network Routes
+    \item Deploying the DNS Cluster Add-on
+    \item Smoke Test
+    \item Cleaning Up
+      \end{enumerate}
 \end{frame}
 
 \begin{frame}
   \frametitle{前提条件}
   \begin{itemize}
     \item GCP上で動作することが想定されている
+    \item 6インスタンス使用(n1-standard-1: Controller * 3 + Worker * 3) + Load Balancer
   \end{itemize}
 \end{frame}
 
@@ -247,9 +267,10 @@
   \begin{itemize}
     \item 時間: 2.5H
     \item コスト: 100円以下
-    \item 「Hard Way」と書かれているものの、実行自体はすんなり: じっくりやっても2.5H
+    \item 「Hard Way」と書かれているものの、実行自体はすんなり
+    \item[]  -> じっくりやっても 2.5H 以下
     \item とは言え、なぞってやっただけではやっぱり理解しきれない
-    \item -> 自分が動かしたい環境で、試行錯誤・カスタマイズし、動かすと理解できるかも
+    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ、動かすことが(必要)
   \end{itemize}
 \end{frame}
 
@@ -257,8 +278,7 @@
 \begin{frame}
   \frametitle{困ったこと・気づき・小ネタ}
   \begin{itemize}
-    \item 「Hard Way」と書かれているものの、実行自体はすんなり: じっくりやっても2.5H
-    \item bash script 作りました
+    \item \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
     \item -> 自分が動かしたい環境で、試行錯誤・カスタマイズし、動かすと理解できるかも
     \item あくまで検証用。Workerノードの追加・削除はちょっと面倒くさそう
   \end{itemize}
