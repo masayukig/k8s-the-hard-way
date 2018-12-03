@@ -172,14 +172,14 @@
           \href{https://github.com/masayukig}{github.com/masayukig}
         \end{scriptsize}
       \end{itemize}
-    \item Books \includegraphics[height=7mm]{images/OpenStack_Integration_book.png}~\includegraphics[height=7mm]{images/InfraCI_book.png}
+    \item Books \includegraphics[height=15mm]{images/OpenStack_Integration_book.png}~\includegraphics[height=15mm]{images/InfraCI_book.png}
       \begin{itemize}
       \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack
         Cloud Integration (OpenStack クラウドインテグレーション)}}
       \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{Infra CI
         Pragmatic Guide - Ansible/GitLab (インフラ CI 実践ガイド)}} (as a reviewer)
       \end{itemize}
-    \item Hobby: Bike(BMC SLR02), Diet(Low-carb), Clouds(OpenStack...), etc.
+    \item Hobby: Bike(BMC SLR02), Clouds(OpenStack...), Diet(Low-carb), etc.
     \includegraphics[height=20mm]{images/my-bike.jpg}~\includegraphics[height=20mm]{images/server_front.jpg}~\includegraphics[height=20mm]{images/my-weight.png}
   \end{itemize}
 \end{frame}
@@ -198,8 +198,8 @@
   \frametitle{こんなこと感じませんか？}
   \begin{itemize}
     \item どんなコンポーネントがあるのか知りたい
-    \item 障害が起きたらデバッグできるようにしたい
     \item 自分好みの k8s を構築したい
+    \item 障害が起きたらデバッグできるようにしたい
     \item 最近の k8s は簡単すぎる
     \item もっとキツイのがイイ!
   \end{itemize}
@@ -208,23 +208,39 @@
 \begin{frame}
   \frametitle{そんなあなたに}
   \begin{itemize}
-    \item \href{https://github.com/kelseyhightower/kubernetes-the-hard-way}{``Kubernetes the Hard Way''}
+    \item[] \Huge{``Kubernetes the Hard Way''}\large{}
+    \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
+    \item[] 使ったことあります？
   \end{itemize}
 \end{frame}
 
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' とは?}
+  \frametitle{``Kubernetes the Hard Way'' ?}
   \begin{itemize}
-    \item Kubernetes 学習用のハンズオン資料
+    \item Kubernetes 学習用のチュートリアル資料
     \item Apache License Version 2.0
     \item 全14章で構成されるドキュメント
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{``Kubernetes the Hard Way'' ? - クラスタ構成コンポーネント}
+  \begin{itemize}
+    \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0
+    \item \href{https://github.com/containerd/containerd}{containerd Container Runtime} 1.2.0-rc.0
+    \item \href{https://github.com/google/gvisor}{gVisor} 50c283b9f56bb7200938d9e207355f05f79f0d17
+    \item \href{https://github.com/containernetworking/cni}{CNI Container Networking} 0.6.0
+    \item \href{https://github.com/etcd-io/etcd}{etcd} v3.3.9
+    \item \href{https://github.com/coredns/coredns}{CoreDNS} v1.2.2
+
+  \end{itemize}
+\end{frame}
+
+
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' とは? - 概略}
+  \frametitle{``Kubernetes the Hard Way'' ? - 概略}
   \begin{enumerate}
     \item Prerequisites
     \item Installing the Client Tools
@@ -245,34 +261,29 @@
 
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' とは? - 一部}
-  \includegraphics[height=80mm]{images/screenshot-k8s-the-hard-way.png}
+  \frametitle{``Kubernetes the Hard Way'' ? - 一部紹介}
+  \includegraphics[height=75mm]{images/screenshot-k8s-the-hard-way.png}
 \end{frame}
 
 \begin{frame}
   \frametitle{前提条件}
   \begin{itemize}
     \item GCP上で動作することが想定されている
-    \item 6インスタンス使用(n1-standard-1: Controller * 3 + Worker * 3) + Load Balancer
+    \item n1-standard-1(vCPU*1,MEM: 3.75GB) * 6
+    \item[] -> Controller * 3 + Worker * 3 + Load Balancer
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{アーキテクチャ・コンポーネント}
-  \begin{itemize}
-    \item ========= TODO architecture diagram
-    \item Controller: etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubectl, nginx, Load Balancer(GCP http-health-checks)
-    \item Worker: crictl, runsc, runc, cni-plugins, containerd, kubectl, kube-proxy, kubelet
-    \item Client: etcd,
-  \end{itemize}
+  \centering{\includegraphics[height=75mm]{images/architecture.png}}
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}
   \frametitle{結果}
   \begin{itemize}
-    \item 時間: 2.5H
-    \item コスト: 100円以下
+    \item 時間: 2.5H, コスト: 100円以下
     \item 「Hard Way」と書かれているものの、実行自体はすんなり
     \item[]  -> じっくりやっても 2.5H 以下
     \item とは言え、なぞってやっただけではやっぱり理解しきれない
@@ -284,29 +295,45 @@
 \begin{frame}
   \frametitle{困ったこと・気づき・小ネタ}
   \begin{itemize}
+    \item 自分が動かしたい環境で、試行錯誤・カスタマイズで理解深める
     \item \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
-    \item -> 自分が動かしたい環境で、試行錯誤・カスタマイズし、動かすと理解できるかも
-    \item あくまで検証用。Workerノードの追加・削除はちょっと面倒くさそう
+    \item[] -> \url{https://github.com/masayukig/k8s-the-hard-way-script}
+    \item あくまで検証用 (例: Workerノードの追加・削除はちょっと面倒くさそう(?))
+    \item 書籍・Web情報などとともに学習するのが良さそう
+    \begin{itemize}
+      \item
+      \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド}
+      \item
+      \href{https://www.shoeisha.co.jp/book/detail/9784798155371}{コンテナ・ベース・オーケストレーション}
+      \item
+      \href{https://www.oreilly.co.jp/books/9784873118406/}{入門 Kubernetes}
+      \item[]
+      \item[] \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
+       \includegraphics[height=20mm]{images/container_based_orchestration.jpg}
+       \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
 \section{Future Plan}
 \begin{frame}
-  \frametitle{今後の展望}
+  \frametitle{今後の(私の)展望}
   \begin{itemize}
-    \item どこのご家庭にもある libvirt/KVM 上で動かす
-    \item どこのご家庭にもある Vagrant 上で動かす
-    \item どこのご家庭にもある OpenStack 上で動かす
+    \item Baremetal, libvirt/KVM, Vagrant, OpenStack 上で動かす!
+    \item[] どこのご家庭にもありますよね?
   \end{itemize}
 \end{frame}
 
 \section{Appendix}
 \begin{frame}
-  \frametitle{結論(再掲)}
+  \frametitle{まとめ}
   \begin{itemize}
-    \item 「Hard Way」と書かれているものの、実行自体はすんなり: じっくりやっても2.5H
-    \item とは言え、なぞってやっただけではやっぱり理解しきれない
-    \item -> 自分が動かしたい環境で、試行錯誤・カスタマイズし、動かすと理解できるかも
+    \item 「Hard Way」だけど、実行自体はすんなり: じっくりやっても2.5H
+    \item とは言え、コピペでやっただけでは理解しきれない
+    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ・動かす必要
+    \item[] \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
+       \includegraphics[height=20mm]{images/container_based_orchestration.jpg}
+       \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
   \end{itemize}
   Appendix
   \begin{itemize}
