@@ -188,8 +188,8 @@
 \begin{frame}
   \frametitle{今日のゴール}
   \begin{itemize}
-    \item Kubernetes The Hard Way とは何かを理解する
-    \item 自分で Kubernetes The Hard Way やってみたい！(と思わせる)
+    \item ``Kubernetes The Hard Way'' とは何かを理解する
+    \item 自分で ``Kubernetes The Hard Way'' やってみたい！(と思ってもらう)
   \end{itemize}
 \end{frame}
 
@@ -198,9 +198,9 @@
   \frametitle{こんなこと感じませんか？}
   \begin{itemize}
     \item どんなコンポーネントがあるのか知りたい
-    \item 自分好みの k8s を構築したい
+    \item 自分好みの Kubernetes クラスタを構築したい
     \item 障害が起きたらデバッグできるようにしたい
-    \item 最近の k8s は簡単すぎる
+    \item 最近の Kubernetes は簡単すぎる
     \item もっとキツイのがイイ!
   \end{itemize}
 \end{frame}
@@ -210,7 +210,7 @@
   \begin{itemize}
     \item[] \Huge{``Kubernetes the Hard Way''}\large{}
     \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
-    \item[] 使ったことあります？
+    \item[] \includegraphics[height=40mm]{images/kelseyhightower_overview.png}
   \end{itemize}
 \end{frame}
 
@@ -275,7 +275,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{アーキテクチャ・コンポーネント}
+  \frametitle{アーキテクチャ・コンポーネント - どんな k8s が出来上がる？}
   \centering{\includegraphics[height=75mm]{images/architecture.png}}
 \end{frame}
 
@@ -287,7 +287,7 @@
     \item 「Hard Way」と書かれているものの、実行自体はすんなり
     \item[]  -> じっくりやっても 2.5H 以下
     \item とは言え、なぞってやっただけではやっぱり理解しきれない
-    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ、動かすことが(必要)
+    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ、動かす必要あり
   \end{itemize}
 \end{frame}
 
@@ -299,7 +299,7 @@
     \item \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
     \item[] -> \url{https://github.com/masayukig/k8s-the-hard-way-script}
     \item あくまで検証用 (例: Workerノードの追加・削除はちょっと面倒くさそう(?))
-    \item 書籍・Web情報などとともに学習するのが良さそう
+    \item 書籍・Web情報などとともに行き来しながら学習すると、良さそう
     \begin{itemize}
       \item
       \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド}
