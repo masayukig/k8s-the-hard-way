@@ -171,14 +171,13 @@
           \href{https://github.com/masayukig}{github.com/masayukig}
         \end{scriptsize}
       \end{itemize}
-    \item Books \includegraphics[height=15mm]{images/OpenStack_Integration_book.png}~\includegraphics[height=15mm]{images/InfraCI_book.png}
+    \item Books
       \begin{itemize}
-      \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack
-        Cloud Integration (OpenStack クラウドインテグレーション)}}
-      \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{Infra CI
-        Pragmatic Guide - Ansible/GitLab (インフラ CI 実践ガイド)}} (as a reviewer)
+      \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack クラウドインテグレーション}}
+      \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{インフラ CI 実践ガイド}} (as a reviewer)
       \end{itemize}
-    \item Hobby: Bike(BMC SLR02), Clouds(OpenStack...), Diet(Low-carb), etc.
+    \item[] \includegraphics[height=15mm]{images/OpenStack_Integration_book.png}~\includegraphics[height=15mm]{images/InfraCI_book.png}
+    \item Hobby: Bike(BMC SLR02), (Home)Clouds(OpenStack...), Diet(Low-carb), etc.
     \includegraphics[height=20mm]{images/my-bike.jpg}~\includegraphics[height=20mm]{images/server_front.jpg}~\includegraphics[height=20mm]{images/my-weight.png}
   \end{itemize}
 \end{frame}
@@ -195,9 +194,11 @@
 \section{Introduction}
 \begin{frame}
   \frametitle{こんなこと感じませんか？}
-  minikube, kubeadm, Rancher, GKE/AKS/EKS, etc. 使って k8s 使ってみたけど..
+  minikube, kubeadm, Rancher, GKE/AKS/EKS, etc. 作/使って k8s 使ってみたけど..
   \begin{itemize}
-    \item[] \Huge{何がどうなってるのか、\\ ぜんぜんわからん！ｗ}
+    \item[] \Huge{＿人人人人人人人人人人人人＿}
+    \item[] \Huge{＞　何がどうなってるのか、 ＜ \\ ＞　ぜんぜんわからん！　　 ＜}
+    \item[] \Huge{￣ＹＹＹＹＹＹＹＹＹＹＹＹ￣}
   \end{itemize}
 \end{frame}
 
@@ -209,12 +210,13 @@
     \item 障害が起きたらデバッグできるようにしたい
     \item 自分好みの Kubernetes クラスタを構築したい
     \item 最近の Kubernetes は簡単すぎる
+    \item もっと Kubernetes について知りたい！
     \item もっと苦労したい！
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{そんなあなたに}
+  \frametitle{１つでも当てはまるなら...}
   \begin{itemize}
     \item[] \Huge{``Kubernetes the Hard Way''}\large{}
     \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
@@ -225,6 +227,7 @@
 \section{What is k8s the hard way?}
 \begin{frame}
   \frametitle{``Kubernetes the Hard Way'' ?}
+  Bootstrap Kubernetes the hard way on GCP. No scripts.
   \begin{itemize}
     \item Kubernetes 学習用のチュートリアル資料
     \item Apache License Version 2.0
@@ -233,7 +236,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' ? - クラスタ構成コンポーネント}
+  \frametitle{``Kubernetes the Hard Way'' ? - 構成コンポーネント＆バージョン}
   \begin{itemize}
     \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0
     \item \href{https://github.com/containerd/containerd}{containerd Container Runtime} 1.2.0-rc.0
@@ -294,18 +297,17 @@
     \item 時間: 2.5H, コスト: 100円以下
     \item 「Hard Way」と書かれているものの、実行自体はすんなり
     \item[]  -> じっくりやっても 2.5H 以下
-    \item とは言え、なぞってやっただけではやっぱり理解しきれない
-    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ、動かす必要あり
+    \item Warning が出ることもあったがあまり気にしない
   \end{itemize}
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}
-  \frametitle{困ったこと・気づき・小ネタ}
+  \frametitle{結果 - 困ったこと・気づき・小ネタ}
   \begin{itemize}
     \item 自分が動かしたい環境で、試行錯誤・カスタマイズで理解深める
-    \item \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
-    \item[] -> \url{https://github.com/masayukig/k8s-the-hard-way-script}
+    \item[] -> \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
+    \item[] (\url{https://github.com/masayukig/k8s-the-hard-way-script})
     \item あくまで検証用 (例: 耐障害性、永続ボリューム, etc.)
     \item 書籍・Web情報などとともに行き来しながら学習すると、良さそう
     \begin{itemize}
