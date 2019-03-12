@@ -18,4 +18,5 @@ Font
 
 * M+ Type-1 Regular
   http://mplus-fonts.osdn.jp/design.html#mplus_1
-  License: http://mplus-fonts.osdn.jp/about.html#license
+
+  * License: http://mplus-fonts.osdn.jp/about.html#license
