@@ -141,7 +141,7 @@
     \item Today's Goal
     \item What's ``Kubernetes The Hard Way''?
     \item Conclusion
-    \item Demo
+%    \item Demo
   \end{enumerate}
 \end{frame}
 
@@ -207,33 +207,27 @@
 
 \section{Introduction}
 \begin{frame}
-  \frametitle{Do you feel ...}
-  When you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
+  \frametitle{Do you feel about Kubernetes,}
   \begin{itemize}
     \item[] \Huge{＿人人人人人人人人人人人人＿}
     \item[] \Huge{＞　　　I have no idea！！ 　　＜}
     \item[] \Huge{＞　　　what's going on！？　＜}
     \item[] \Huge{￣ＹＹＹＹＹＹＹＹＹＹＹＹ￣}
   \end{itemize}
+  When you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
 \end{frame}
 
 \begin{frame}
-  \frametitle{Do you feel ... - cont.}
-  When you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
+  \frametitle{Do you want to... - cont.}
   \begin{itemize}
     \item Know its components and architecture
-    \item Debug
+    \item Debug it
     \item Build a k8s cluster as you like
     \item Feel that it's too easy to build a k8s cluster
     \item Understand Kubernetes in detail
     \item Build a k8s cluster in a harder way :-p
-    \item どんなコンポーネントがあるのか知りたい
-    \item 障害が起きたらデバッグできるようにしたい
-    \item 自分好みの Kubernetes クラスタを構築したい
-    \item 最近の Kubernetes は簡単すぎる
-    \item もっと Kubernetes について知りたい！
-    \item もっと苦労したい！
   \end{itemize}
+  when you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
 \end{frame}
 
 \begin{frame}
@@ -320,7 +314,19 @@
     \item It says ``Hard way'', but it was not so hard itself.
     \item[]  -> It took only less than 2.5H
     \item I saw some warnings, but you don't need to worry about that that much :)
-    \item You can read and its code and participate its community because it's open source!
+    \item You can read, write and participate its code and community because it's open source!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{One more thing - Running in an OpenStack Cloud}
+  It can be run in an OpenStack cloud, too! But some modifications are necessary.
+  \begin{itemize}
+    \item Boot instances
+    \item Configure network
+    \item Set security groups
+    \item Host name resolution is required (such as DNS, /etc/hosts)
+    \item Load Balancer is also required (such as Octavia, Nginx, HA-Proxy)
   \end{itemize}
 \end{frame}
 
@@ -334,16 +340,15 @@
     \item Books and google search could help your understanding
     \begin{itemize}
       \item \href{https://www.amazon.com/dp/B075G373MJ/}{Kubernetes: Up and Running: Dive into the Future of Infrastructure}
+      \href{https://www.oreilly.co.jp/books/9784873118406/}{(Japanese version: 入門 Kubernetes)}
       \item
-      \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド}
+      \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド (Kubernetes Perfect Guide)}
       \item
-      \href{https://www.shoeisha.co.jp/book/detail/9784798155371}{コンテナ・ベース・オーケストレーション}
-      \item
-      \href{https://www.oreilly.co.jp/books/9784873118406/}{入門 Kubernetes}
+      \href{https://www.shoeisha.co.jp/book/detail/9784798155371}{コンテナ・ベース・オーケストレーション (Container based orchestration)}
       \item[]
-      \item[] \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
+      \item[] \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
+       \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
        \includegraphics[height=20mm]{images/container_based_orchestration.jpg}
-       \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
     \end{itemize}
   \end{itemize}
 \end{frame}
