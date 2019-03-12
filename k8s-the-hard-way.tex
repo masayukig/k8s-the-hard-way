@@ -97,9 +97,9 @@
     }
     {Masayuki Igawa}
 }
-\date{\href{https://containerdays.jp/timetable.html}{December 04, 2018}}
+\date{\href{https://2019.fossasia.org/event/schedule.html}{March 15, 2019}}
 \def\place#1{\def\@place{#1}}
-\place{\href{https://containerdays.jp/timetable.html}{@JapanContainerDays v18.12}}
+\place{\href{https://2019.fossasia.org/event/schedule.html\#5131}{@FOSSASIA Summit 2019}}
 
 %\vspace*{10pt}
 \title[k8s-the-hard-way
@@ -124,7 +124,7 @@
   \titlepage{}
   \centering
   \@place \par
-  \href{https://bit.ly/k8s-the-hard-way-jkd-v1812}{https://bit.ly/k8s-the-hard-way-jkd-v1812}
+  \href{https://bit.ly/k8s-the-hard-way-fossasia2019}{https://bit.ly/k8s-the-hard-way-fossasia2019}
   \begin{flushright}
     \tiny\href{https://creativecommons.org/licenses/by/4.0/}{This work
       is licensed under a Creative Commons Attribution 4.0
@@ -137,27 +137,36 @@
 \begin{frame}
   \frametitle{Agenda}
   \begin{enumerate}
-    \item 自己紹介
-    \item 今日のゴール
-    \item \bf{Kubernetes The Hard Way} とは？
-    \item 結論
-    \item 今後の展望
-    \item まとめ
+    \item Who am I?
+    \item Today's Goal
+    \item What's ``Kubernetes The Hard Way''?
+    \item Conclusion
+    \item Demo
   \end{enumerate}
 \end{frame}
 
 \section{DISCLAIMER}
 \begin{frame}
   \frametitle{DISCLAIMER}
-  \Huge{\bf{この内容は個人の見解であり、所属する組織・団体を代表するものではありません。}}
+  \Huge{\bf{These slides are my own opinion}}
 \end{frame}
 
 \section{Who I am?}
 \begin{frame}
   \frametitle{Who I am?}
   \begin{itemize}
-    \item 所属企業：2017.3- SUSE/Novell Japan
-    \item 仕事/肩書: Senior Software Engineer/Open Source Programmer
+    \item Company：1998.4-2015.12 Traditional IT company in Japan,
+      2016.1-2017.3 HPE -> 2017.3- SUSE/Novell Japan -> 2019 ???(\href{https://www.suse.com/c/further-independence-for-suse/}{\scriptsize{``Further Independence for SUSE''}})
+      \begin{itemize}
+        \item SUSE OpenStack Cloud QE(Quality Engineering) Team
+          \begin{scriptsize}
+        \item[]
+          \href{https://www.suse.com/newsroom/post/2016/suse-acquires-openstack-iaas-and-cloud-foundry-paas-talent-and-technology-assets-from-hpe-to-accelerate-growth-and-entry-into-new-markets/}{``SUSE
+            Acquires OpenStack IaaS and CF PaaS Talent and Tech Assets
+            from HPE ...''}
+          \end{scriptsize}
+      \end{itemize}
+    \item Job: Senior Software Engineer/Open Source Programmer
       \begin{itemize}
         \begin{scriptsize}
         \item \href{https://www.openstack.org/}{OpenStack}
@@ -167,45 +176,57 @@
           \href{http://status.openstack.org/openstack-health/}{OpenStack-Health},
           \href{https://docs.openstack.org/developer/subunit2sql/}{Subunit2SQL},
           \href{https://docs.openstack.org/developer/stackviz/}{Stackviz}),
+          \href{https://github.com/mtreinish/stestr}{stestr}
+        \item
           \href{http://stackalytics.com/?user_id=igawa&release=all&metric=all}{stackalytics.com/?user\_id=igawa},
           \href{https://github.com/masayukig}{github.com/masayukig}
         \end{scriptsize}
       \end{itemize}
-    \item Books
+    \item Books \includegraphics[scale=0.1]{images/OpenStack_Integration_book.png}~\includegraphics[scale=0.1]{images/InfraCI_book.png}
       \begin{itemize}
-      \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack クラウドインテグレーション}}
-      \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{インフラ CI 実践ガイド}} (as a reviewer)
+      \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack
+        Cloud Integration (OpenStack クラウドインテグレーション)}}
+      \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{Infra CI
+        Pragmatic Guide - Ansible/GitLab (インフラ CI 実践ガイド)}} (as a reviewer)
       \end{itemize}
-    \item[] \includegraphics[height=15mm]{images/OpenStack_Integration_book.png}~\includegraphics[height=15mm]{images/InfraCI_book.png}
-    \item Hobby: Bike(BMC SLR02), (Home)Clouds(OpenStack...), Diet(Low-carb), etc.
-    \includegraphics[height=20mm]{images/my-bike.jpg}~\includegraphics[height=20mm]{images/server_front.jpg}~\includegraphics[height=20mm]{images/my-weight.png}
+    \item Hobby
+      \begin{itemize}
+      \item Bike, Diet, etc.
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
 \section{Goal of today}
 \begin{frame}
-  \frametitle{今日のゴール}
+  \frametitle{Today's Goal}
   \begin{itemize}
-    \item ``Kubernetes The Hard Way'' とは何かを理解する
-    \item 自分で ``Kubernetes The Hard Way'' やってみたい！(と思ってもらう)
+    \item Understand ``Kubernetes The Hard Way''
+    \item Motivate to do ``Kubernetes The Hard Way'' by yourself
   \end{itemize}
 \end{frame}
 
 \section{Introduction}
 \begin{frame}
-  \frametitle{こんなこと感じませんか？}
-  minikube, kubeadm, Rancher, GKE/AKS/EKS, etc. で k8s 作/使ってみたけど..
+  \frametitle{Do you feel ...}
+  When you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
   \begin{itemize}
     \item[] \Huge{＿人人人人人人人人人人人人＿}
-    \item[] \Huge{＞　何がどうなってるのか、 ＜ \\ ＞　ぜんぜんわからん！　　 ＜}
+    \item[] \Huge{＞　　　I have no idea！！ 　　＜}
+    \item[] \Huge{＞　　　what's going on！？　＜}
     \item[] \Huge{￣ＹＹＹＹＹＹＹＹＹＹＹＹ￣}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{こんなこと感じませんか？ - cont.}
-  minikube, kubeadm, Rancher, GKE/AKS/EKS, etc. で k8s 作/使ってみたけど..
+  \frametitle{Do you feel ... - cont.}
+  When you make a k8s cluster by using minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
   \begin{itemize}
+    \item Know its components and architecture
+    \item Debug
+    \item Build a k8s cluster as you like
+    \item Feel that it's too easy to build a k8s cluster
+    \item Understand Kubernetes in detail
+    \item Build a k8s cluster in a harder way :-p
     \item どんなコンポーネントがあるのか知りたい
     \item 障害が起きたらデバッグできるようにしたい
     \item 自分好みの Kubernetes クラスタを構築したい
@@ -216,7 +237,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{１つでも当てはまるなら...}
+  \frametitle{If it meets you, there's}
   \begin{itemize}
     \item[] \Huge{``Kubernetes the Hard Way''}\large{}
     \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
@@ -229,14 +250,14 @@
   \frametitle{``Kubernetes the Hard Way'' ?}
   Bootstrap Kubernetes the hard way on GCP. No scripts.
   \begin{itemize}
-    \item Kubernetes 学習用のチュートリアル資料
+    \item Tutorial for Kubernetes
     \item Apache License Version 2.0
-    \item 全14章で構成されるドキュメント
+    \item Document consists of 14 chapters
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' ? - 構成コンポーネント＆バージョン}
+  \frametitle{``Kubernetes the Hard Way'' ? - components \& versions}
   \begin{itemize}
     \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0
     \item \href{https://github.com/containerd/containerd}{containerd Container Runtime} 1.2.0-rc.0
@@ -251,7 +272,7 @@
 
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' ? - 概略}
+  \frametitle{``Kubernetes the Hard Way'' ? - outline}
   \begin{enumerate}
     \item Prerequisites
     \item Installing the Client Tools
@@ -272,45 +293,47 @@
 
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' ? - 一部紹介}
+  \frametitle{``Kubernetes the Hard Way'' ? (partial)}
   \includegraphics[height=75mm]{images/screenshot-k8s-the-hard-way.png}
 \end{frame}
 
 \begin{frame}
-  \frametitle{前提条件}
+  \frametitle{Precondition}
   \begin{itemize}
-    \item GCP上で動作することが想定されている
+    \item It works on Google Cloud Platform basically.
+    \item[] But I could run it on an OpenStack cloud with some tricks :)
     \item n1-standard-1(vCPU*1,MEM: 3.75GB) * 6
     \item[] -> Controller * 3 + Worker * 3 + Load Balancer
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{アーキテクチャ・コンポーネント - どんな k8s が出来上がる？}
+  \frametitle{Architechture, components for this k8s cluster}
   \centering{\includegraphics[height=75mm]{images/architecture.png}}
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}
-  \frametitle{結果}
+  \frametitle{Conclusion}
   \begin{itemize}
-    \item 時間: 2.5H, コスト: 100円以下
-    \item 「Hard Way」と書かれているものの、実行自体はすんなり
-    \item[]  -> じっくりやっても 2.5H 以下
-    \item Warning が出ることもあったがあまり気にしない
+    \item Hours: 2.5H, Cost: less than \$1
+    \item It says ``Hard way'', but it was not so hard itself.
+    \item[]  -> It took only less than 2.5H
+    \item I saw some warnings, but you don't need to worry about that that much :)
+    \item You can read and its code and participate its community because it's open source!
   \end{itemize}
 \end{frame}
 
-\section{Conclusion}
 \begin{frame}
-  \frametitle{結果 - 困ったこと・気づき・小ネタ}
+  \frametitle{Conclusion - challenges, tricks, misc.}
   \begin{itemize}
-    \item 自分が動かしたい環境で、試行錯誤・カスタマイズで理解深める
-    \item[] -> \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash script} 作りました
+    \item It's better to run and customize it on your own environment, and try/error to understand
+    \item[] -> I made \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash scripts}
     \item[] (\url{https://github.com/masayukig/k8s-the-hard-way-script})
-    \item あくまで検証用 (例: 耐障害性、永続ボリューム, etc.)
-    \item 書籍・Web情報などとともに行き来しながら学習すると、良さそう
+    \item This is only for learning not for production (i.e. HA, Persistent Volume, etc.)
+    \item Books and google search could help your understanding
     \begin{itemize}
+      \item \href{https://www.amazon.com/dp/B075G373MJ/}{Kubernetes: Up and Running: Dive into the Future of Infrastructure}
       \item
       \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド}
       \item
@@ -325,30 +348,10 @@
   \end{itemize}
 \end{frame}
 
-\section{Future Plan}
 \begin{frame}
-  \frametitle{今後の(私の)展望}
+  \frametitle{Appendix}
   \begin{itemize}
-    \item Baremetal, libvirt/KVM, Vagrant, OpenStack 上で動かす!
-    \item[] どこのご家庭にもありますよね?
-  \end{itemize}
-\end{frame}
-
-\section{Appendix}
-\begin{frame}
-  \frametitle{まとめ}
-  \begin{itemize}
-    \item 「Hard Way」だけど、実行自体はすんなり: じっくりやっても2.5H
-    \item とは言え、コピペでやっただけでは理解しきれない
-    \item[] -> 自分が動かしたい環境で、試行錯誤・カスタマイズ・動かす必要
-    \item[] \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
-       \includegraphics[height=20mm]{images/container_based_orchestration.jpg}
-       \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
-    \item Open Source のメリットを最大限に活かしましょう！
-  \end{itemize}
-  Appendix
-  \begin{itemize}
-      \item Slides: \url{https://bit.ly/k8s-the-hard-way-jkd-v1812}
+      \item Slides: \url{https://bit.ly/k8s-the-hard-way-fossasia2019}
       \item Contact info: \texttt{masayukig on
         \href{https://freenode.net/}{Freenode},
         \href{https://github.com/masayukig}{GitHub},
@@ -357,5 +360,6 @@
       \item Kubernetes The Hard Way: \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
   \end{itemize}
 \end{frame}
+
 
 \end{document}
