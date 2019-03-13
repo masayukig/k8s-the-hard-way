@@ -140,6 +140,8 @@
     \item Who am I?
     \item Today's Goal
     \item What's ``Kubernetes The Hard Way''?
+    \item Kubernetes The Hard Way on GCP
+    \item Kubernetes The Hard Way on OpenStack
     \item Conclusion
 %    \item Demo
   \end{enumerate}
@@ -156,15 +158,9 @@
   \frametitle{Who I am?}
   \begin{itemize}
     \item Company：1998.4-2015.12 Traditional IT company in Japan,
-      2016.1-2017.3 HPE -> 2017.3- SUSE/Novell Japan -> 2019 ???(\href{https://www.suse.com/c/further-independence-for-suse/}{\scriptsize{``Further Independence for SUSE''}})
+      2016.1-2017.3 HPE -> 2017.3- SUSE/Novell Japan -> 2019(\href{https://www.suse.com/c/further-independence-for-suse/}{\scriptsize{``Further Independence for SUSE''}})
       \begin{itemize}
         \item SUSE OpenStack Cloud QE(Quality Engineering) Team
-          \begin{scriptsize}
-        \item[]
-          \href{https://www.suse.com/newsroom/post/2016/suse-acquires-openstack-iaas-and-cloud-foundry-paas-talent-and-technology-assets-from-hpe-to-accelerate-growth-and-entry-into-new-markets/}{``SUSE
-            Acquires OpenStack IaaS and CF PaaS Talent and Tech Assets
-            from HPE ...''}
-          \end{scriptsize}
       \end{itemize}
     \item Job: Senior Software Engineer/Open Source Programmer
       \begin{itemize}
@@ -182,17 +178,15 @@
           \href{https://github.com/masayukig}{github.com/masayukig}
         \end{scriptsize}
       \end{itemize}
-    \item Books \includegraphics[scale=0.1]{images/OpenStack_Integration_book.png}~\includegraphics[scale=0.1]{images/InfraCI_book.png}
+    \item Books \includegraphics[scale=0.2]{images/OpenStack_Integration_book.png}~\includegraphics[scale=0.2]{images/InfraCI_book.png}
       \begin{itemize}
       \item \href{https://www.amazon.co.jp/dp/4798139785/}{\scriptsize{OpenStack
-        Cloud Integration (OpenStack クラウドインテグレーション)}}
+        Cloud Integration (Japanese book)}} (one of the authors)
       \item \href{https://www.amazon.co.jp/dp/4798155128/}{\scriptsize{Infra CI
-        Pragmatic Guide - Ansible/GitLab (インフラ CI 実践ガイド)}} (as a reviewer)
+        Pragmatic Guide - Ansible/GitLab (Japanese book)}} (as a reviewer)
       \end{itemize}
-    \item Hobby
-      \begin{itemize}
-      \item Bike, Diet, etc.
-      \end{itemize}
+    \item Hobby: Bike(BMC SLR02), Diet(Low-carb), Clouds(OpenStack...), etc.
+    \includegraphics[height=20mm]{images/my-bike.jpg}~\includegraphics[height=20mm]{images/server_front.jpg}~\includegraphics[height=20mm]{images/my-weight.png}
   \end{itemize}
 \end{frame}
 
@@ -218,7 +212,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Do you want to... - cont.}
+  \frametitle{If you want to...}
   \begin{itemize}
     \item Know its components and architecture
     \item Debug it
@@ -231,9 +225,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{If it meets you, there's}
+  \frametitle{If you're interested in one or more, there's}
   \begin{itemize}
-    \item[] \Huge{``Kubernetes the Hard Way''}\large{}
+    \item[] \Huge{\bf ``Kubernetes the Hard Way''}\large{}
     \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
     \item[] \includegraphics[height=40mm]{images/kelseyhightower_overview.png}
   \end{itemize}
@@ -253,7 +247,7 @@
 \begin{frame}
   \frametitle{``Kubernetes the Hard Way'' ? - components \& versions}
   \begin{itemize}
-    \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0
+    \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0 (Latest: v1.13)
     \item \href{https://github.com/containerd/containerd}{containerd Container Runtime} 1.2.0-rc.0
     \item \href{https://github.com/google/gvisor}{gVisor} 50c283b9f56bb7200938d9e207355f05f79f0d17
     \item \href{https://github.com/containernetworking/cni}{CNI Container Networking} 0.6.0
@@ -292,7 +286,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Precondition}
+  \frametitle{Prerequisites}
   \begin{itemize}
     \item It works on Google Cloud Platform basically.
     \item[] But I could run it on an OpenStack cloud with some tricks :)
@@ -308,33 +302,59 @@
 
 \section{Conclusion}
 \begin{frame}
-  \frametitle{Conclusion}
+  \frametitle{Conclusion on GCP}
   \begin{itemize}
-    \item Hours: 2.5H, Cost: less than \$1 on GCP
+    \item Hours: 2.5H, Cost: less than \$1
     \item It says ``Hard way'', but it was not so hard itself.
     \item[]  -> It took only less than 2.5H
     \item I saw some warnings, but you don't need to worry about that that much :)
-    \item We can read, write and participate its code and community because it's open source!
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{[WIP] One more thing - Running in an OpenStack Cloud}
+  \frametitle{Kubernetes The Hard Way on OpenStack Cloud}
   \begin{itemize}
-    \item ======= TODO ============
-    \item Built a new OpenStack Cloud
-    \item Architecture(OpenStack Rocky, Nova/Glance/Cinder/Keystone/Neutron with my own ansible playbook)
-    \item Cost
-    \item Problem
-    \item Challenges
-    \item Pictures(Old and new ones)
+    \item Hardware: \href{https://www.asrock.com/nettop/Intel/DeskMini 310 Series}{ASRock DeskMini 310}, Celeron G4920 3.2GHz, 16GB, 120GB SSD/HDD
+    \item Software
+      \begin{itemize}
+        \item {OS: openSUSE 15, OpenStack version: Rocky, Components: [Nova, Glance, Cinder, Keystone, Neutron]}
+        \item Follow the \href{https://docs.openstack.org/install-guide/}{OpenStack Installation Guide} and autemated by ansible
+      \end{itemize}
+    \item Cost: \$300/node(roughly) * 3
+  \end{itemize}
+  \begin{figure}
+    \begin{tabular}{cc}
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[height=40mm]{images/server_front.jpg}
+        \caption{OLD}
+      \end{minipage}
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[height=40mm]{images/my-new-cloud.jpg}
+        \caption{NEW(smaller, quiet, low energy \& performance)}
+      \end{minipage}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problems/Challenges}
+  It can be run in an public/private OpenStack cloud, too! \\
+  But some challenges exist.
+  \begin{itemize}
+    \item Initial and maintenace costs are required
+    \item OpenStack is also {\bf *Hard*} :-P
+      \begin{itemize}
+        \item The controller node was unstable with SSD.
+        \item It took a lot of hours to (re)build. -> automated by an ansible playbook
+      \end{itemize}
+    \item Difference between GCP and OpenStack -> Next slide
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{One more thing - Running in an OpenStack Cloud}
-  It can be run in an public/private OpenStack cloud, too! \\
-  But some modifications are necessary.
+  \frametitle{Difference between GCP and OpenStack ({\tt gcloud} vs {\tt openstack})}
   \begin{itemize}
     \item Boot instances
     \item Configure network
@@ -345,24 +365,24 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Conclusion - challenges, tricks, misc.}
+  \frametitle{Conclusion}
   \begin{itemize}
-    \item It's better to run and customize it on your own environment, and try/error to understand
+    \item Run and customize it on your own environment, try/error to understand
     \item[] -> I made \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash scripts}
     \item[] (\url{https://github.com/masayukig/k8s-the-hard-way-script})
-    \item This is only for learning not for production (i.e. HA, Persistent Volume, etc.)
+    \item Only for learning, not for production (i.e. HA, Persistent Volume, etc.)
+    \item It's open source! We can read, write and participate its code and community.
     \item Books and google search could help your understanding
     \begin{itemize}
       \item \href{https://www.amazon.com/dp/B075G373MJ/}{Kubernetes: Up and Running: Dive into the Future of Infrastructure}
-      \href{https://www.oreilly.co.jp/books/9784873118406/}{(Japanese version: 入門 Kubernetes)}
       \item
-      \href{https://book.impress.co.jp/books/1118101055}{Kubernetes完全ガイド (Kubernetes Perfect Guide)}
+      \href{https://www.amazon.com/dp/B072TS9ZQZ/}{The Kubernetes Book}
       \item
-      \href{https://www.shoeisha.co.jp/book/detail/9784798155371}{コンテナ・ベース・オーケストレーション (Container based orchestration)}
+      \href{https://kubernetes.io}{Kubernetes.io}
       \item[]
-      \item[] \includegraphics[height=20mm]{images/kubernetes_up_and_running.jpeg}
-       \includegraphics[height=20mm]{images/kubernetes_complete_guide.jpg}
-       \includegraphics[height=20mm]{images/container_based_orchestration.jpg}
+      \item[] \includegraphics[height=20mm]{images/kubernetes-up-and-running.png}
+       \includegraphics[height=20mm]{images/the-kubernetes-book.png}
+       \includegraphics[height=20mm]{images/kubernetes-io.png}
     \end{itemize}
   \end{itemize}
 \end{frame}
