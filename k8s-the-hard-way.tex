@@ -97,9 +97,9 @@
     }
     {Masayuki Igawa}
 }
-\date{\href{https://events.opensuse.org/conferences/oSC19}{May 24, 2019}}
+\date{\href{https://opensuseja.connpass.com/event/130049/}{July 20, 2019}}
 \def\place#1{\def\@place{#1}}
-\place{\href{https://events.opensuse.org/conferences/oSC19/program/proposals/2456}{@openSUSE Conference 2019}}
+\place{\href{https://opensuseja.connpass.com/event/130049/}{@openSUSE mini Summit 2019}}
 
 %\vspace*{10pt}
 \title[k8s-the-hard-way
@@ -137,11 +137,11 @@
 \begin{frame}
   \frametitle{Agenda}
   \begin{enumerate}
-    \item Who am I?
-    \item Today's Goal
-    \item What's ``Kubernetes The Hard Way''?
-    \item Kubernetes The Hard Way on GCP
-    \item Kubernetes The Hard Way on OpenStack
+    \item 自己紹介
+    \item 今日のゴール
+    \item ``Kubernetes The Hard Way'' って何?
+    \item Kubernetes The Hard Way を GCP 上で
+    \item Kubernetes The Hard Way を 自分の OpenStack 上で
     \item Conclusion
 %    \item Demo
   \end{enumerate}
@@ -150,7 +150,7 @@
 \section{DISCLAIMER}
 \begin{frame}
   \frametitle{DISCLAIMER}
-  \huge{\bf{These slides are my own opinion}}
+  \huge{\bf{このスライドは私個人の意見です}}
 \end{frame}
 
 \section{Who I am?}
@@ -192,40 +192,40 @@
 
 \section{Goal of today}
 \begin{frame}
-  \frametitle{Today's Goal}
+  \frametitle{今日のゴール}
   \begin{itemize}
-    \item Understand ``Kubernetes The Hard Way''
-    \item Motivate to do ``Kubernetes The Hard Way'' by yourself
+    \item ``Kubernetes The Hard Way'' をざっくり理解する
+    \item ``Kubernetes The Hard Way'' をご自身でやってみたいという気持ちに
   \end{itemize}
 \end{frame}
 
 \section{Introduction}
 \begin{frame}
-  \frametitle{Do you feel about Kubernetes,}
+  \frametitle{k8s 使うとき、こんなことを感じませんか？}
   \begin{itemize}
     \item[] \Huge{＿人人人人人人人人人人＿}
     \item[] \Huge{＞　　It's like a magic！！ 　＜}
     \item[] \Huge{＞　　what's going on！？　＜}
     \item[] \Huge{￣ＹＹＹＹＹＹＹＹＹＹ￣}
   \end{itemize}
-  When you make a k8s cluster with a deployment tool such as\\
-  minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
+  k8s クラスタを、各種デプロイメントツールを使って作るようなとき。\\
+  例えば、minikube, kubeadm, Rancher, GKE/AKS/EKS, etc...
 \end{frame}
 
 \begin{frame}
-  \frametitle{If you want to...}
+  \frametitle{もし...}
   \begin{itemize}
-    \item Know its components and architecture
-    \item Debug it
-    \item Build a k8s cluster as you like
-    \item Feel that it's too easy to build a k8s cluster
-    \item Understand Kubernetes in detail
-    \item Build a k8s cluster in a harder way :-p
+    \item コンポーネント・アーキテクチャを理解したい
+    \item デバッグしたい
+    \item 自分好みの k8s クラスタを作りたい
+    \item k8s クラスタ作るが簡単過ぎて面白みがない
+    \item k8s をより詳しく理解したい
+    \item k8s クラスタを とにかく苦労して作りたい！
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{If you're interested in one or more, there's}
+  \frametitle{そんなあなたに...}
   \begin{itemize}
     \item[] \Huge{\bf ``Kubernetes the Hard Way''}\large{}
     \item \url{https://github.com/kelseyhightower/kubernetes-the-hard-way}
@@ -238,16 +238,16 @@
   \frametitle{``Kubernetes the Hard Way'' ?}
   Bootstrap Kubernetes the hard way on GCP. No scripts.
   \begin{itemize}
-    \item Tutorial for Kubernetes
+    \item Kubernetes のチュートリアル
     \item Apache License Version 2.0
-    \item Document consists of 14 chapters
+    \item 14 章構成のドキュメント
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{``Kubernetes the Hard Way'' ? - components \& versions}
   \begin{itemize}
-    \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0 (Latest: v1.13)
+    \item \href{https://github.com/kubernetes/kubernetes}{Kubernetes} 1.12.0 (Latest: v1.15)
     \item \href{https://github.com/containerd/containerd}{containerd Container Runtime} 1.2.0-rc.0
     \item \href{https://github.com/google/gvisor}{gVisor} 50c283b9f56bb7200938d9e207355f05f79f0d17
     \item \href{https://github.com/containernetworking/cni}{CNI Container Networking} 0.6.0
@@ -260,7 +260,7 @@
 
 \section{What is k8s the hard way?}
 \begin{frame}
-  \frametitle{``Kubernetes the Hard Way'' ? - outline}
+  \frametitle{``Kubernetes the Hard Way'' ? - 目次}
   \begin{enumerate}
     \item Prerequisites
     \item Installing the Client Tools
@@ -286,10 +286,10 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Prerequisites}
+  \frametitle{準備}
   \begin{itemize}
-    \item It works on Google Cloud Platform basically.
-    \item[] But I could run it on an OpenStack cloud with some tricks :)
+    \item 基本的に Google Cloud Platform 上で動かすことを想定
+    \item[] でも、私の OpenStack クラウドでも動いたよ！（ちょっとコツが必要でしたけど :)
     \item n1-standard-1(vCPU*1,MEM: 3.75GB) * 6
     \item[] -> Controller * 3 + Worker * 3 + Load Balancer
   \end{itemize}
@@ -304,10 +304,10 @@
 \begin{frame}
   \frametitle{Summary on GCP}
   \begin{itemize}
-    \item Hours: 2.5H, Cost: less than \$1
-    \item It says ``Hard way'', but it was not so hard itself.
-    \item[]  -> It took only less than 2.5H
-    \item I saw some warnings, but you don't need to worry about that that much :)
+    \item Hours: 2.5H, Cost: \$1 以下
+    \item ``Hard way'' とは言うものの、実行自体はそんなに大変じゃない
+    \item[]  -> 2.5H 以下で終わる
+    \item いくつかウォーニングは出たものの、あんまり気にしない！ :)
   \end{itemize}
 \end{frame}
 
@@ -340,39 +340,39 @@
 
 \begin{frame}
   \frametitle{Problems/Challenges}
-  It can be run in an public/private OpenStack cloud, too! \\
-  But some challenges exist.
+  public/private OpenStack cloud 上でも動かせるよ！ \\
+  ただ、ちょっと課題はあります..
   \begin{itemize}
-    \item Initial and maintenace costs are required
-    \item OpenStack is also {\bf *Hard*} :-P
+    \item 初期＆メンテナンスコストが結構かかります
+    \item OpenStack は（も） {\bf *Hard*} :-P
       \begin{itemize}
-        \item The controller node was unstable with SSD.
-        \item It took a lot of hours to (re)build. -> automated by an ansible playbook
+        \item コントローラーノードの SSD が不安定
+        \item 再構築に何時間もかかってしまった -> ansible playbook書いて解決
       \end{itemize}
-    \item Difference between GCP and OpenStack -> Next slide
+    \item GCP と OpenStack の差異 -> 次のスライド
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Difference between GCP and OpenStack ({\tt gcloud} vs {\tt openstack})}
+  \frametitle{GCP と OpenStack での差異 ({\tt gcloud} vs {\tt openstack})}
   \begin{itemize}
-    \item Boot instances
-    \item Configure network
-    \item Set security groups
-    \item Host name resolution is required (such as DNS, /etc/hosts)
-    \item Load Balancer is also required (such as Octavia, Nginx, HA-Proxy)
+    \item instances 起動
+    \item network 設定
+    \item security groups 設定
+    \item ホスト名解決が必要 (DNS, /etc/hosts)
+    \item ロードバランサーも必要 (Octavia, Nginx, HA-Proxy)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Summary}
   \begin{itemize}
-    \item Run and customize it on your own environment, try/error to understand
-    \item[] -> I made \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash scripts}
+    \item 自分の環境で、動かし、色々カスタマイズし、Try＆Errorで、理解が深まる
+    \item[] -> \href{https://github.com/masayukig/k8s-the-hard-way-script}{Bash scripts} 作りました
     \item[] (\url{https://github.com/masayukig/k8s-the-hard-way-script})
-    \item Only for learning, not for production (i.e. HA, Persistent Volume, etc.)
-    \item It's open source! We can read, write and participate its code and community.
-    \item Books and google search could help your understanding
+    \item 学習目的, プロダクション環境では使わないように (i.e. HA, Persistent Volume, etc.)
+    \item オープンソース! ソースコードを読めるし、書けるし、PR出したりしてコミュニティに参加したほうが面白い
+    \item 各種書籍、ググって見ると色んな本があって、理解に役立ちます
     \begin{itemize}
       \item \href{https://www.amazon.com/dp/B075G373MJ/}{Kubernetes: Up and Running: Dive into the Future of Infrastructure}
       \item
